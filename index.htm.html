@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="شركة [اسم الشركة] تقدم حلول تقنية مبتكرة ومتقدمة لعملائنا في مختلف الصناعات.">
+    <title>موقع متعدد الصفحات</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            direction: rtl;
+            background-color: #e0f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #003c64;
+            /* غمق اللون الأزرق */
+            padding: 15px 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin: 0 25px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 10px 15px;
+            border-radius: 5px;
+        }
+
+        nav ul li a:hover {
+            background-color: #001f3d;
+            /* لون أغمق عند التمرير */
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        }
+
+        section {
+            display: none;
+            padding: 20px;
+            margin: 20px 0;
+            background-color: #b3e5fc;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border: 2px solid #003c64;
+            /* غمق حدود الأزرق */
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        section.show {
+            display: block;
+            opacity: 1;
+        }
+
+        footer {
+            background-color: #003c64;
+            /* غمق اللون الأزرق */
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+
+        .board {
+            border: 2px solid #003c64;
+            /* غمق اللون الأزرق */
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            background-color: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .board:hover {
+            border-color: #003c64;
+            background-color: #b3e5fc;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .programs-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 20px;
+        }
+
+        .program-card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            width: 300px;
+            padding: 20px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .program-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .program-card h3 {
+            color: #003c64;
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+
+        .program-card p {
+            font-size: 16px;
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .program-card ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .program-card ul li {
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .program-card ul li::before {
+            content: "✔";
+            color: #003c64;
+            margin-right: 10px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .programs-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .program-card {
+                width: 100%;
+            }
+        }
+        /* تحسين تنسيق العناصر في قسم اتصل بنا */
+#contact .board {
+    margin-bottom: 20px;
+}
+
+#contact .form-container form input, 
+#contact .form-container form textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #003c64;
+    font-size: 16px;
+}
+
+#contact .form-container form button {
+    background-color: #003c64;
+    color: #fff;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#contact .form-container form button:hover {
+    background-color: #001f3d;
+}
+
+/* تحسين رابط الوسائل الاجتماعية */
+#contact .social-media ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+#contact .social-media ul li {
+    margin: 10px 0;
+}
+
+#contact .social-media ul li a {
+    text-decoration: none;
+    color: #003c64;
+    font-size: 18px;
+}
+
+#contact .social-media ul li a:hover {
+    color: #001f3d;
+    text-decoration: underline;
+}
+
+/* جعل النصوص والأزرار واضحة */
+#contact h1, #contact h2 {
+    font-size: 24px;
+    color: #003c64;
+}
+
+#contact p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #555;
+}
+
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <nav>
+            <ul>
+                <li><a href="javascript:void(0);" onclick="showSection('home')">الرئيسية</a></li>
+                <li><a href="javascript:void(0);" onclick="showSection('programs')">البرامج</a></li>
+                <li><a href="javascript:void(0);" onclick="showSection('about')">معلومات عن الشركة</a></li>
+                <li><a href="javascript:void(0);" onclick="showSection('contact')">اتصل بنا</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- الرئيسية -->
+    <section id="home" class="section-content">
+        <div class="board">
+            <h1>أهلاً بك في موقعنا!</h1>
+            <p>نحن في شركة [اسم الشركة] نقدم حلولاً مبتكرة وعالية الجودة لعملائنا في مختلف الصناعات. يسرنا أن نقدم لك
+                منصة تتضمن العديد من الخدمات التي تلبي احتياجاتك.</p>
+        </div>
+        <div class="board">
+            <p>تم تصميم هذا الموقع ليكون وسيلة تفاعلية وسهلة لك لاكتشاف ما نقدمه من خدمات وبرامج. سواء كنت تبحث عن حلول
+                تقنية أو دعم فني، فإننا هنا لضمان أن تحصل على ما تحتاجه بكل يسر وسلاسة.</p>
+        </div>
+    </section>
+
+    <!-- البرامج -->
+    <section id="programs" class="section-content">
+        <h1 class="board">البرامج التي نقدمها</h1>
+
+        <div class="programs-container">
+            <!-- باقة خمس جولات جولف -->
+            <div class="program-card">
+                <h3>الباقة الأساسية</h3>
+                <p>نحن نقدم لك أفضل برامج جولف في مواقع حصرية مع خدمات فاخرة.</p>
+                <ul>
+                    <li>خمس جولات جولف في مواقع حصرية.</li>
+                    <li>إقامة لمدة خمس ليالٍ في جناح فاخر.</li>
+                    <li>تدريب احترافي شهري مع مدربين دوليين.</li>
+                    <li>جلسة تدريب رقمية مجانية عبر الإنترنت.</li>
+                </ul>
+            </div>
+
+            <!-- باقة Triple Tee -->
+            <div class="program-card">
+                <h3>باقة Triple Tee</h3>
+                <p>استمتع بتجربة جولف احترافية مع خدمات متميزة، بما في ذلك التدريب والأطعمة.</p>
+                <ul>
+                    <li>إقامة ليلتين مع وجبة إفطار للأطفال.</li>
+                    <li>ثلاث جولات جولف احترافية مع المدربين المتخصصين.</li>
+                    <li>تأجير العربات مجانًا لجميع اللاعبين.</li>
+                    <li>خصم 20% على تدريب المحترفين في النادي.</li>
+                </ul>
+            </div>
+
+            <!-- باقة الاسترخاء والتجمعات -->
+            <div class="program-card">
+                <h3>باقة الاسترخاء والتجمعات</h3>
+                <p>استمتع بتجربة فاخرة تجمع بين الاسترخاء والرياضة في بيئة هادئة.</p>
+                <ul>
+                    <li>إقامة ليلة واحدة في جناح فاخر.</li>
+                    <li>عشاء في مطاعم الجولف المتاحة.</li>
+                    <li>الوصول الكامل إلى مرافق الجولف.</li>
+                    <li>إمكانية تخصيص الحزم لتناسب احتياجات الشركات.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- معلومات عن الشركة -->
+    <section id="about" class="section-content">
+        <div class="board">
+            <h1>معلومات عن شركتنا</h1>
+        </div>
+        <div class="board">
+            <p>شركة [اسم الشركة] هي واحدة من الشركات الرائدة في مجال تقديم الحلول التقنية المتقدمة. نحن نقدم حلولاً
+                مبتكرة ومتطورة تركز على تلبية احتياجات عملائنا في مختلف الصناعات. لدينا فريق متخصص يسعى لتقديم أفضل
+                الخدمات وأكثرها تطوراً، مما يعزز من قدرة عملائنا على النجاح والنمو في بيئة تنافسية.</p>
+        </div>
+        <div class="board">
+            <h2>مهمتنا</h2>
+            <p>نهدف إلى توفير حلول مبتكرة تسهم في تحسين الأداء وتطوير الأعمال لعملائنا، مما يسهم في زيادة الإنتاجية
+                وتحقيق النجاح المستدام.</p>
+        </div>
+       
+    </section>
+
+    <!-- اتصل بنا -->
+<section id="contact" class="section-content">
+    <div class="board">
+        <h1>اتصل بنا</h1>
+        <p>نحن هنا لمساعدتك! إذا كان لديك أي استفسار أو ترغب في الحصول على دعم، يمكنك التواصل معنا باستخدام الطرق التالية:</p>
+    </div>
+
+  
+    <div class="form-container">
+        <h2>أرسل لنا رسالة</h2>
+        <form action="#" method="POST">
+            <label for="name">اسمك الكامل:</label>
+            <input type="text" name="name" placeholder="أدخل اسمك الكامل" required>
+
+            <label for="email">البريد الإلكتروني:</label>
+            <input type="email" name="email" placeholder="أدخل بريدك الإلكتروني" required>
+
+            <label for="message">رسالتك:</label>
+            <textarea name="message" placeholder="أدخل رسالتك هنا" rows="4" required></textarea>
+
+            <button type="submit">إرسال</button>
+        </form>
+    </div>
+
+    
+</section>
+
+
+    <!-- Footer -->
+    <footer>
+      <p>هول إن ون<p/>
+    </footer>
+
+    <script>
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => {
+                section.classList.remove('show');
+            });
+
+            const selectedSection = document.getElementById(sectionId);
+            if (selectedSection) {
+                selectedSection.classList.add('show');
+            }
+        }
+    </script>
+
+</body>
+
+
+</html>
